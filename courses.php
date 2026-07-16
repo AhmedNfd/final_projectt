@@ -16,6 +16,7 @@ $result = mysqli_query($conn,$sql);
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -33,8 +34,11 @@ $result = mysqli_query($conn,$sql);
 <p>Welcome <?php echo $_SESSION['user']; ?></p>
 
 <a href="students.php">Students</a> |
+
 <a href="courses.php">Courses</a> |
+
 <a href="my_courses.php">My Courses</a> |
+
 <a href="logout.php">Logout</a>
 
 <br><br>
@@ -54,20 +58,27 @@ if($_SESSION['role']=="admin")
 }
 ?>
 
-<table border="1">
+<table border="1" cellpadding="10">
 
 <tr>
 
 <th>ID</th>
+
+<th>Course Image</th>
+
 <th>Course Name</th>
+
 <th>Price</th>
+
 <th>Package</th>
 
 <?php
 if($_SESSION['role']=="user")
 {
 ?>
+
 <th>Enroll</th>
+
 <?php
 }
 ?>
@@ -76,7 +87,9 @@ if($_SESSION['role']=="user")
 if($_SESSION['role']=="admin")
 {
 ?>
+
 <th>Action</th>
+
 <?php
 }
 ?>
@@ -93,6 +106,16 @@ while($row=mysqli_fetch_assoc($result))
 <tr>
 
 <td><?php echo $row['id']; ?></td>
+
+<td>
+
+<img
+src="images/<?php echo $row['image']; ?>"
+width="120"
+height="80"
+style="border-radius:10px;">
+
+</td>
 
 <td><?php echo $row['course_name']; ?></td>
 
