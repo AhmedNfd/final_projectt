@@ -1,0 +1,80 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+h1{
+    text-align:center;
+    color:#333;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+table th{
+    background:#007BFF;
+    color:white;
+}
+
+table th,
+table td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+form{
+    width:400px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    box-sizing:border-box;
+}
+
+input[type=submit]{
+    background:#007BFF;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+input[type=submit]:hover{
+    background:#0056b3;
+}
+
+a{
+    text-decoration:none;
+    color:#007BFF;
+    font-weight:bold;
+}
+
+a:hover{
+    color:red;
+}
+.login-page{
+    background-image: url("images/login.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.students-page{
+    background-image: url("images/student.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
