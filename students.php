@@ -158,18 +158,13 @@ if($_SESSION['role']=="admin")
 <td><?php echo $row['username']; ?></td>
 
 <td>
-
-<a href="edit_student.php?id=<?php echo $row['id']; ?>">
-Edit
-</a>
+<a href="edit_students.php?id=<?php echo $row['id']; ?>">Edit</a>
 
 |
 
-<a href="delete_student.php?id=<?php echo $row['id']; ?>"
+<a href="delete_students.php?id=<?php echo $row['id']; ?>"
 onclick="return confirm('Are you sure?');">
-
 Delete
-
 </a>
 
 </td>
