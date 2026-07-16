@@ -8,17 +8,16 @@ if(!isset($_SESSION['user']))
     exit();
 }
 
-include("db.php");
-
-?>
-<?php
+if($_SESSION['role'] != "admin")
+{
+    die("Access Denied");
+}
 
 include("db.php");
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM students WHERE id='$id'";
-$result = mysqli_query($conn,$sql);
+$result = mysqli_query($conn,"SELECT * FROM students WHERE id='$id'");
 $row = mysqli_fetch_assoc($result);
 
 if(isset($_POST['update']))
@@ -28,18 +27,21 @@ if(isset($_POST['update']))
     $phone = $_POST['phone'];
     $age = $_POST['age'];
     $department = $_POST['department'];
+    $username = $_POST['username'];
 
     $sql = "UPDATE students SET
             name='$name',
             email='$email',
             phone='$phone',
             age='$age',
-            department='$department'
+            department='$department',
+            username='$username'
             WHERE id='$id'";
 
     if(mysqli_query($conn,$sql))
     {
         header("Location: students.php");
+        exit();
     }
     else
     {
@@ -51,10 +53,15 @@ if(isset($_POST['update']))
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Edit Student</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body class="students-page">
 
 <h1>Edit Student</h1>
@@ -76,6 +83,9 @@ if(isset($_POST['update']))
 <label>Department</label><br>
 <input type="text" name="department" value="<?php echo $row['department']; ?>" required><br><br>
 
+<label>Username</label><br>
+<input type="text" name="username" value="<?php echo $row['username']; ?>" required><br><br>
+
 <input type="submit" name="update" value="Update Student">
 
 </form>
@@ -85,4 +95,5 @@ if(isset($_POST['update']))
 <a href="students.php">Back</a>
 
 </body>
+
 </html>

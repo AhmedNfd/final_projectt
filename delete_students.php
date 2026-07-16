@@ -8,24 +8,33 @@ if(!isset($_SESSION['user']))
     exit();
 }
 
-include("db.php");
-
-?>
-<?php
-
-include("db.php");
-
-$id = $_GET['id'];
-
-$sql = "DELETE FROM students WHERE id='$id'";
-
-if(mysqli_query($conn,$sql))
+if($_SESSION['role'] != "admin")
 {
-    header("Location: students.php");
+    die("Access Denied");
+}
+
+include("db.php");
+
+if(isset($_GET['id']))
+{
+    $id = $_GET['id'];
+
+    $sql = "DELETE FROM students WHERE id='$id'";
+
+    if(mysqli_query($conn, $sql))
+    {
+        header("Location: students.php");
+        exit();
+    }
+    else
+    {
+        echo "Error";
+    }
 }
 else
 {
-    echo "Error";
+    header("Location: students.php");
+    exit();
 }
 
 ?>

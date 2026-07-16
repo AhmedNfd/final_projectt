@@ -8,10 +8,10 @@ if(!isset($_SESSION['user']))
     exit();
 }
 
-include("db.php");
-
-?>
-<?php
+if($_SESSION['role'] != "admin")
+{
+    die("Access Denied");
+}
 
 include("db.php");
 
@@ -22,13 +22,15 @@ if(isset($_POST['submit']))
     $phone = $_POST['phone'];
     $age = $_POST['age'];
     $department = $_POST['department'];
+    $username = $_POST['username'];
 
-    $sql = "INSERT INTO students(name,email,phone,age,department)
-            VALUES('$name','$email','$phone','$age','$department')";
+    $sql = "INSERT INTO students(name,email,phone,age,department,username)
+            VALUES('$name','$email','$phone','$age','$department','$username')";
 
     if(mysqli_query($conn,$sql))
     {
         header("Location: students.php");
+        exit();
     }
     else
     {
@@ -40,10 +42,15 @@ if(isset($_POST['submit']))
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Add Student</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body class="students-page">
 
 <h1>Add Student</h1>
@@ -65,6 +72,9 @@ if(isset($_POST['submit']))
 <label>Department</label><br>
 <input type="text" name="department" required><br><br>
 
+<label>Username</label><br>
+<input type="text" name="username" required><br><br>
+
 <input type="submit" name="submit" value="Add Student">
 
 </form>
@@ -74,4 +84,5 @@ if(isset($_POST['submit']))
 <a href="students.php">Back</a>
 
 </body>
+
 </html>
